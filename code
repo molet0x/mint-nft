@@ -1,0 +1,22 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+# Set up the Selenium driver
+driver = webdriver.Chrome()  # You may need to download and install the Chrome driver
+driver.get('https://example.com')  # Replace 'https://example.com' with the URL of the website
+
+# Find and click the "mint" button
+wait = WebDriverWait(driver, 10)
+try:
+    mint_button = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="mint-button"]')))  # Replace '//*[@id="mint-button"]' with the actual XPath of the "mint" button
+    while True:
+        mint_button.click()
+        time.sleep(0.01)  # Adjust the sleep time to achieve the desired click speed
+except KeyboardInterrupt:
+    pass
+
+# Close the Selenium driver
+driver.quit()
